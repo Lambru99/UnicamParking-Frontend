@@ -1,0 +1,7 @@
+{
+  "name": "UnicamParking",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
