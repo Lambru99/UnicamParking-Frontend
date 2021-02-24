@@ -10,8 +10,15 @@ import { AuthenticateService } from '../services/authentication.service';
 export class ParkingPage implements OnInit {
 
   ngOnInit() {
+  this.authService.userDetails().subscribe(res=>{
+    console.log('res',res);
+    if (res == null) {
+      this.navCtrl.navigateBack('/nologinerror');
+    }
+  },err => {
+    console.log('err', err);
+  })
   }
-
   constructor(public actionSheetController: ActionSheetController,   
     private navCtrl: NavController,
     private authService: AuthenticateService) {}

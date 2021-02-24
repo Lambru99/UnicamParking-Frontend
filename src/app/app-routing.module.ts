@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'parking',
     loadChildren: () => import('./parking/parking.module').then( m => m.ParkingPageModule)
   },
+  {
+    path: 'nologinerror',
+    loadChildren: () => import('./nologinerror/nologinerror.module').then( m => m.NologinerrorPageModule)
+  },
 ];
 
 @NgModule({

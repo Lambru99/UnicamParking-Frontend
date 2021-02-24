@@ -24,7 +24,7 @@ export class DashboardPage implements OnInit {
       if (res !== null) {
         this.userEmail = res.email;
       } else {
-        this.navCtrl.navigateBack('');
+        this.navCtrl.navigateBack('/nologinerror');
       }
     }, err => {
       console.log('err', err);
