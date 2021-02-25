@@ -3,8 +3,7 @@ import { NavController } from '@ionic/angular';
 import { AuthenticateService } from '../services/authentication.service';
 import { Subject, timer } from 'rxjs';
 import { finalize, map, takeUntil, takeWhile } from 'rxjs/operators';
-import { RouterLink } from '@angular/router';
-import { exit } from 'process';
+
 
 @Component({
   selector: 'app-user-parking',
@@ -13,8 +12,8 @@ import { exit } from 'process';
 })
 export class UserParkingPage implements OnInit {
   constructor(private navCtrl: NavController,
-    private authService: AuthenticateService) { }
-    
+    private authService: AuthenticateService,
+    ) { }
     
     private stop$ = new Subject<any>();
     private bool_ : boolean = false;
@@ -58,25 +57,44 @@ export class UserParkingPage implements OnInit {
 
   ngOnInit() {      
 
+    this.authService.userDetails().subscribe(res=>{
+      console.log('res',res);
+      if (res == null) {
+        this.navCtrl.navigateBack('/nologinerror');
+      }
+    },err => {
+      console.log('err', err);
+    })
   }
 
 
 
+  
+
   timer$ = timer(0, 1000).pipe(
-    takeUntil(this.stop$),               // stop when `stop$` emits
-    takeWhile(_ => this.value_ < 1),     // are you sure `this.value_ == 1` is right?
-    finalize(() => this.someMethod()),   // run this method when observable completes
+    takeUntil(this.stop$),               
+    takeWhile(_ => this.value_ < 1),    
+    finalize(() => this.timeout()),   
     map(_ => {
-      this.value_ = this.value_ + 0.075;
+      this.value_ = this.value_ + 0.0017;
       return this.value_;
     }
   ));
 
   
 
-  someMethod(){}
+ 
+  
+  timeout(){
+    this.navCtrl.navigateBack('/parking');
+
+  }
+
+
   stopTimer(){
     this.stop$.next();
+    this.navCtrl.navigateBack('/resume');
+
   }
 
   logout() {
@@ -91,6 +109,9 @@ export class UserParkingPage implements OnInit {
   }
   
 
+
+
+  
   
 
 }

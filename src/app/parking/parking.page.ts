@@ -31,7 +31,7 @@ export class ParkingPage implements OnInit {
         text: 'Prenota',
         icon: 'book-outline',
         handler: () => {
-          alert("prenotato");
+          this.navCtrl.navigateBack('/user-parking');
         }
       }]
     });
