@@ -1,0 +1,13 @@
+<ion-content>
+  <ion-button (click)="logout()" routerLinkActive="router-link-active"  color="tertiary">LOGUOT</ion-button>
+  <img id="imgCar" src="../../assets/Uni.jpg">
+  
+
+ 
+  <div id ="container">
+    <div>Hai 10 minuti per parcheggiare la macchina!</div>
+    <ion-progress-bar [value]="timer$ | async" [buffer]="buffer"></ion-progress-bar>
+    <ion-button color="success"  (click)="stopTimer()">Ho parcheggiato!</ion-button>
+  </div>
+
+</ion-content>
